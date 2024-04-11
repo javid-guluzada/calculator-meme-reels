@@ -41,6 +41,12 @@ html = '''
   .slow-image {
     display: none;
   }
+
+
+  @media (max-width: 768px) {
+    .slow-image {
+      width: 250px; 
+    }
 </style>
 </head>
 <body>
