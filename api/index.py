@@ -77,12 +77,13 @@ function loadSlowImage() {
     img.onload = function() {
         var canvas = document.querySelector('.slow-image');
         var ctx = canvas.getContext('2d');
-        canvas.width = img.width; 
-        canvas.height = img.height;
 
-        var imgWidth = img.width;
-        var imgHeight = img.height;
-        var chunkHeight = 1;
+        var imgWidth = img.width / 2; // halving the width of the image
+        var imgHeight = img.height / 2; // halving the height of the image
+        canvas.width = imgWidth; // setting canvas width to the new image width
+        canvas.height = imgHeight; // setting canvas height to the new image height
+
+        var chunkHeight = 1; // you can adjust this value to control the height of each drawn chunk
         var chunks = Math.ceil(imgHeight / chunkHeight);
         var currentChunk = 0;
 
@@ -91,13 +92,15 @@ function loadSlowImage() {
                 return;
             }
             var y = currentChunk * chunkHeight;
-            ctx.drawImage(img, 0, y, imgWidth, chunkHeight, 0, y, imgWidth, chunkHeight);
+            ctx.drawImage(img, 0, y * 2, img.width, chunkHeight * 2, 0, y, imgWidth, chunkHeight);
             currentChunk++;
             setTimeout(drawChunk, 5);
         }
         drawChunk();
     };
 }
+
+
 </script>
 </body>
 </html>
